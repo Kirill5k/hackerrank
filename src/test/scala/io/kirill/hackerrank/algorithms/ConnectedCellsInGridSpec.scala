@@ -17,8 +17,8 @@ class ConnectedCellsInGridSpec extends AnyWordSpec with Matchers {
       val grid3 = Array(Array(1,1,1,0,1), Array(0,0,1,0,0), Array(1,1,0,1,0), Array(0,1,1,0,0), Array(0,0,0,0,0), Array(0,1,0,0,0), Array(0,0,1,1,0))
       ConnectedCellsInGrid.connectedCell(grid3) must be (9)
 
-//      val grid4 = Array(Array(0,1,0,0,0,0,1,1,0),Array(1,1,0,0,1,0,0,0,1),Array(0,0,0,0,1,0,1,0,0),Array(0,1,1,1,0,1,0,1,1),Array(0,1,1,1,0,0,1,1,0),Array(0,1,0,1,1,0,1,1,0),Array(0,1,0,0,1,1,0,1,1),Array(1,0,1,1,1,1,0,0,0))
-//      ConnectedCellsInGrid.connectedCell(grid4) must be (29)
+      val grid4 = Array(Array(0,1,0,0,0,0,1,1,0),Array(1,1,0,0,1,0,0,0,1),Array(0,0,0,0,1,0,1,0,0),Array(0,1,1,1,0,1,0,1,1),Array(0,1,1,1,0,0,1,1,0),Array(0,1,0,1,1,0,1,1,0),Array(0,1,0,0,1,1,0,1,1),Array(1,0,1,1,1,1,0,0,0))
+      ConnectedCellsInGrid.connectedCell(grid4) must be (29)
     }
   }
 }
