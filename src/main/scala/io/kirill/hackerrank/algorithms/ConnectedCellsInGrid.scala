@@ -16,19 +16,18 @@ object ConnectedCellsInGrid {
       }
     }
 
-    def areNotConnected(p1: (Int, Int), p2: (Int, Int)): Boolean =
-      ids(p1) != ids(p2)
-
     def connect(p1: (Int, Int), p2: (Int, Int)): Unit = {
       val p1Id = ids(p1)
       val p2Id = ids(p2)
 
-      if (sizes(p1Id) > sizes(p2Id)) {
-        sizes(p1Id) = sizes(p1Id) + sizes(p2Id)
-        ids(p2) = p1Id
-      } else {
-        sizes(p2Id) = sizes(p1Id) + sizes(p2Id)
-        ids(p1) = p2Id
+      if (p1Id != p2Id) {
+        if (sizes(p1Id) > sizes(p2Id)) {
+          sizes(p1Id) = sizes(p1Id) + sizes(p2Id)
+          ids(p2) = p1Id
+        } else {
+          sizes(p2Id) = sizes(p1Id) + sizes(p2Id)
+          ids(p1) = p2Id
+        }
       }
     }
 
@@ -39,7 +38,7 @@ object ConnectedCellsInGrid {
         .filter(_ != (x, y))
         .filter(p => ids.contains(p))
         .filter(p => matrix(p._1)(p._2) == 1)
-        .filter(p => areNotConnected(point, p))
+        .filter(p => ids(point) != ids(p))
         .foreach(p => {connect(point, p); unionFind(p)})
     }
 
@@ -51,6 +50,6 @@ object ConnectedCellsInGrid {
         .foreach { y => unionFind((x, y))}
     }
 
-    ids.values.groupBy(identity).values.map(_.size).max
+    sizes.maxBy(_._2)._2
   }
 }
