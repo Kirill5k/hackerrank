@@ -25,10 +25,10 @@ object ConnectedCellsInGrid {
 
       if (sizes(p1Id) > sizes(p2Id)) {
         sizes(p1Id) = sizes(p1Id) + sizes(p2Id)
-        ids(p2) = ids(p1)
+        ids(p2) = p1Id
       } else {
         sizes(p2Id) = sizes(p1Id) + sizes(p2Id)
-        ids(p1) = ids(p2)
+        ids(p1) = p2Id
       }
     }
 
