@@ -13,15 +13,8 @@ object NonDivisibleSubset {
       .sortBy(_._2.size)
       .reverse
 
-    val numbers = scala.collection.mutable.Map[Int, List[Int]]()
-
-    remainders.foreach {
-      case (r, nums) =>
-        if (!numbers.contains(k-r)) {
-          numbers(r) = nums
-        }
-    }
-
-    numbers.values.flatten.size
+    remainders.foldLeft(Map[Int, List[Int]]()) {
+      case (res, (r, nums)) => if (!res.contains(k-r)) res + (r -> nums) else res
+    }.values.flatten.size
   }
 }
