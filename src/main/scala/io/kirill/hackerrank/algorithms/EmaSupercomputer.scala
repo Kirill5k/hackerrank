@@ -30,7 +30,7 @@ object EmaSupercomputer {
         case scala.collection.immutable.List(c1, c2) => (c1._3 * 4 + 1) * (c2._3 * 4 + 1)
       }
 
-    if (pairs.isEmpty && crosses.isEmpty) 1
+    if (crosses.isEmpty) 1
     else if (pairs.isEmpty) crosses.head._3 * 4 + 1
     else pairs.max
   }
