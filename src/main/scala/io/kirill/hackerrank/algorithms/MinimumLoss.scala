@@ -2,7 +2,7 @@ package io.kirill.hackerrank.algorithms
 
 object MinimumLoss {
 
-  def minimumLoss(price: Array[Long]): Int = {
+  def minimumLoss(price: Array[Long]): Int =
     price
       .sorted
       .reverse
@@ -14,5 +14,4 @@ object MinimumLoss {
         case Array(p1, p2) => (p1 - p2).toInt
       }
       .min
-  }
 }
