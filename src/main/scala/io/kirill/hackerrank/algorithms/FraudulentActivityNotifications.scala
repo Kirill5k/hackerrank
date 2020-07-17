@@ -59,7 +59,7 @@ object FraudulentActivityNotifications {
 
   @scala.annotation.tailrec
   def getMedianPoint(counts: Array[Int], i: Int, k: Int = 0, j: Int = 0): Int = {
-    if (k > i) j
+    if (k > i) j - 1
     else {
       getMedianPoint(counts, i, k + counts(j), j+1)
     }
