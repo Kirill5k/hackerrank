@@ -29,7 +29,7 @@ object BreadthFirstSearchShortestReach {
     if (queue.isEmpty) dist
     else {
       val n = queue.head
-      val adjacentNodes = graph(n).filter(x => !vis(x) && dist(x) == -1)
+      val adjacentNodes = graph(n).filter(an => !vis(an) && dist(an) == -1)
       adjacentNodes.foreach { an =>
           dist(an) = dist(n) + 1
           vis(an) = true
