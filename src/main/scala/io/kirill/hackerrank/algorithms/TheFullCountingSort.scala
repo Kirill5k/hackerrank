@@ -3,9 +3,9 @@ package io.kirill.hackerrank.algorithms
 object TheFullCountingSort {
 
   def sort(arr: Array[Array[String]]): String = {
-    val charsToReplace = arr.slice(0, arr.length / 2).map(_(1)).toSet
-    val counts = arr.toList.map {
-      case Array(i, w) => (i.toInt ,w)
+    val half = arr.length / 2
+    val counts = arr.zipWithIndex.toList.map {
+      case (Array(n, w), i) => (n.toInt , (w, i))
     }
       .groupBy(_._1)
       .view.mapValues(_.map(_._2))
@@ -15,11 +15,7 @@ object TheFullCountingSort {
       .keys
       .toList
       .sorted
-      .map { i =>
-        val chars = counts(i)
-        if (chars.size == 1) chars
-        else chars.map(c => if (charsToReplace.contains(c)) "-" else c)
-      }
+      .map(counts(_).map(c => if (c._2 < half) "-" else c._1))
       .map(_.mkString(" "))
       .mkString(" ")
   }
