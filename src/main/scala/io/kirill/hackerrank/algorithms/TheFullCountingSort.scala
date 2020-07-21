@@ -4,19 +4,18 @@ object TheFullCountingSort {
 
   def sort(arr: Array[Array[String]]): String = {
     val half = arr.length / 2
-    val counts = arr.zipWithIndex.toList.map {
-      case (Array(n, w), i) => (n.toInt , (w, i))
+
+    var counts = Map[Int, List[String]]()
+    for (i <- arr.indices) {
+      val Array(n, w) = arr(i)
+      counts = counts + (n.toInt -> (counts.getOrElse(n.toInt, Nil) :+ (if (i < half) "-" else w)))
     }
-      .groupBy(_._1)
-      .view.mapValues(_.map(_._2))
-      .toMap
 
     counts
       .keys
       .toList
       .sorted
-      .map(counts(_).map(c => if (c._2 < half) "-" else c._1))
-      .map(_.mkString(" "))
+      .map(counts(_).mkString(" "))
       .mkString(" ")
   }
 }
