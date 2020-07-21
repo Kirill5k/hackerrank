@@ -15,15 +15,23 @@ object AlmostSorted {
         else Array("yes")
       case (1, 1) =>
         val p1 = peaks.find(_._2 == 1).map(_._1).get
-        val p2 = peaks.find(_._2 == -1).map(_._1).get
-        val op = if (p1 + 1 != p2) "reverse" else "swap"
-        Array("yes", s"$op $p1 $p2")
+        val p2 = peaks.findLast(_._2 == -1).map(_._1).get
+        if (p1 + 1 != p2) Array("yes", s"reverse $p1 $p2")
+        else if (canBeSwapped(p1-1, p2-1, arr)) Array("yes", s"swap $p1 $p2")
+        else Array("no")
       case (2, 2) =>
         val p1 = peaks.find(_._2 == 1).map(_._1).get
         val p2 = peaks.findLast(_._2 == -1).map(_._1).get
-        Array("yes", s"swap $p1 $p2")
+        if (canBeSwapped(p1-1, p2-1, arr)) Array("yes", s"swap $p1 $p2") else Array("no")
       case (_, _) =>
         Array("no")
     }
+  }
+
+  def canBeSwapped(p1: Int, p2: Int, arr: Array[Int]): Boolean = {
+    val copy = arr.clone()
+    copy(p1) = arr(p2)
+    copy(p2) = arr(p1)
+    !copy.zip(copy.tail).exists {case (x,y) => x>y}
   }
 }
