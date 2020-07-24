@@ -1,7 +1,5 @@
 package io.kirill.hackerrank.algorithms
 
-import scala.util.Try
-
 object Candies {
 
   def candies(n: Int, arr: Array[Int]): Long = {
@@ -16,7 +14,6 @@ object Candies {
         candies(i-1) = candies(i) + 1
       }
     }
-
     candies.sum
   }
 }
