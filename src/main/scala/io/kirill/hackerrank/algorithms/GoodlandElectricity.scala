@@ -4,17 +4,16 @@ object GoodlandElectricity {
 
   def pylons(k: Int, arr: Array[Int]): Int = {
     @scala.annotation.tailrec
-    def go(pos: Int, range: Int, towers: Int): Int = {
-      if (range >= arr.length) towers
+    def go(pos: Int, coverage: Int, towers: Int): Int = {
+      if (coverage >= arr.length) towers
       else {
         if (arr(pos) == 1) {
-          val newRange = pos + k
-          val newPos = newRange + k - 1
-          if (newPos >= arr.length) go(arr.length-1, newRange, towers+1) else go(newPos, newRange, towers+1)
+          val newCoverage = pos + k
+          val newPos = newCoverage + k - 1
+          if (newPos >= arr.length) go(arr.length-1, newCoverage, towers+1) else go(newPos, newCoverage, towers+1)
         } else {
-          val newPos = pos-1
-          if (newPos < range - k + 1 || newPos < 0) -1
-          else go(newPos, range, towers)
+          if (pos <= coverage - k + 1 || pos <= 0) -1
+          else go(pos-1, coverage, towers)
         }
       }
     }
