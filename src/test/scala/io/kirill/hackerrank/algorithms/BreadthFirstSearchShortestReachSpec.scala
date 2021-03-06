@@ -7,7 +7,13 @@ class BreadthFirstSearchShortestReachSpec extends AnyWordSpec with Matchers {
 
   "BreadthFirstSearchShortestReach::bfs" should {
     "return shortest distances to all nodes" in {
-      BreadthFirstSearchShortestReach.bfs(4, 2, Array(Array(1, 2), Array(1, 3)), 1) must be (Array(6, 6, -1))
+      val nNodes = 5
+      val edges = Array(Array(1, 2), Array(1, 3), Array(3, 4))
+      val startingNode = 1
+
+      val result = BreadthFirstSearchShortestReach.bfs(nNodes, edges.length, edges, startingNode)
+
+      result mustBe Array(6, 6, 12, -1)
     }
   }
 }
